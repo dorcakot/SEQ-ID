@@ -1,0 +1,6 @@
+/venv/
+.DS_Store
+/.idea/
+/__pycache__/
+
+seq-id/__pycache__/
