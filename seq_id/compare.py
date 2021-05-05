@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from summary_B import summary, get_seq_name, summary_similarity
-from summary_N import NCBI_summary, summary_score
+from .summaryB import summary, get_seq_name, summary_similarity
+from .summaryN import NCBI_summary, summary_score
 
 
 def comparison(bold: str, ncbi: str) -> str:

@@ -4,9 +4,9 @@ import argparse
 import sys
 import logging
 from .query import *
-from .summary_B import *
-from .summary_N import *
-from .taxon_B import *
+from .summaryB import *
+from .summaryN import *
+from .taxonB import *
 from .compare import comparison, report_bold, report_ncbi
 
 

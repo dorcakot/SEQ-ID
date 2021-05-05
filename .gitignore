@@ -3,5 +3,8 @@
 /.idea/
 /__pycache__/
 
-seq-id/__pycache__/
-seq-id/seq*
+seq_id/__pycache__/
+seq_id/seq*
+seq_id.egg-info
+build/*
+dist/*

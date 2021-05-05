@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from Bio.Blast import NCBIXML
-from summary_B import get_seq_name, get_database
+from .summaryB import get_seq_name, get_database
 
 
 def NCBI_summary(file: str) -> str:

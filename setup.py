@@ -17,11 +17,11 @@ setup(
     include_package_data=True,
     zip_safe=False,
     packages=[
-        'seq-id',
+        'seq_id',
     ],
     entry_points={
         'console_scripts': [
-            'seq-id=seq-id.main:main',
+            'seq_id=seq_id.main:main',
         ],
     },
 )
