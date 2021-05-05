@@ -6,7 +6,9 @@ import requests
 
 def get_taxon_id(sample_id: str) -> str:
     """
-
+    Request taxon data by specifying BOLD ID.
+    :param sample_id: ID of a requested sample.
+    :return: Sample information.
     """
     url = 'http://www.boldsystems.org/index.php/API_Public/combined?ids=' + sample_id
     result = requests.get(url)
@@ -15,7 +17,9 @@ def get_taxon_id(sample_id: str) -> str:
 
 def get_taxon_name(name: str) -> str:
     """
-
+    Request taxon data by specifying taxon name.
+    :param name: Name of a requested specimen.
+    :return: Sample/specimen information.
     """
     url = 'http://www.boldsystems.org/index.php/API_Public/combined?taxon=' + name
     result = requests.get(url)
@@ -24,7 +28,9 @@ def get_taxon_name(name: str) -> str:
 
 def taxon_summary(identificator: str) -> str:
     """
-
+    Prepares taxon information in a readable form.
+    :param identificator: Identifier of a requested specimen/sample.
+    :return: Readable sample/specimen information.
     """
     if is_id(identificator):
         data = xml.fromstring(get_taxon_id(identificator))
@@ -39,7 +45,8 @@ def taxon_summary(identificator: str) -> str:
 
 def is_id(identificator: str) -> str:
     """
-
+    Checks if an identifier is ID or name.
+    :return: Bool expressing whether the identifier is an ID.
     """
     if any(char.isdigit() for char in identificator):
         return True
@@ -49,7 +56,9 @@ def is_id(identificator: str) -> str:
 
 def get_taxonomy(record) -> str:
     """
-
+    Create nice report about taxonomy.
+    :param record: XML information about a record
+    :return: Readable information about sample's/specimen's taxonomy.
     """
     taxonomy = record.find('taxonomy')
     phylum = taxonomy.find('phylum').find('taxon').find('name').text
@@ -69,7 +78,9 @@ def get_taxonomy(record) -> str:
 
 def get_collection(record) -> str:
     """
-
+    Create nice report about a collection event.
+    :param record: XML information about a record
+    :return: Readable information about sample's/specimen's collection event.
     """
     collection = record.find('collection_event')
     collectors = collection.find('collectors').text
@@ -86,7 +97,9 @@ def get_collection(record) -> str:
 
 def get_seq(record) -> str:
     """
-
+    Create nice report about sequence.
+    :param record: XML information about a record
+    :return: Sequence and ID information about sample/specimen.
     """
     sequences = record.find('sequences')
     sequence = sequences.find('sequence')

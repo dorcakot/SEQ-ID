@@ -3,16 +3,11 @@
 import argparse
 import sys
 import logging
-from query import *
-from summary_B import *
-from summary_N import *
-from taxon_B import *
-from compare import comparison
-"""
 from .query import *
-from .top import *
-from .statistics import *
-from .taxon import *"""
+from .summary_B import *
+from .summary_N import *
+from .taxon_B import *
+from .compare import comparison, report_bold, report_ncbi
 
 
 def main():
@@ -46,6 +41,11 @@ def main():
     arguments_compare.set_defaults(action='compare')
     arguments_compare.add_argument('file_bold', help='File with BOLD search results.')
     arguments_compare.add_argument('file_ncbi', help='File with NCBI search results.')
+
+    arguments_report = arguments_sub.add_parser('report', help='Report all found matches.')
+    arguments_report.set_defaults(action='report')
+    arguments_report.add_argument('--bold', dest='bold', help='File with BOLD search results.')
+    arguments_report.add_argument('--ncbi', dest='ncbi', help='File with NCBI search results.')
 
     arguments_taxon = arguments_sub.add_parser('taxon', help='Display taxon information.')
     arguments_taxon.set_defaults(action='taxon')
@@ -117,6 +117,11 @@ def main():
                     log.info(NCBI_summary(config.file))
     elif config.action == 'compare':
         log.info(comparison(config.file_bold, config.file_ncbi))
+    elif config.action == 'report':
+        if config.bold is not None:
+            log.info(report_bold(config.bold))
+        if config.ncbi is not None:
+            log.info(report_ncbi(config.ncbi))
     elif config.action == 'taxon':
         if config.id is not None:
             log.info('Requesting BOLD..')

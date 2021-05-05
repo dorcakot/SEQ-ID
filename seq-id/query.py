@@ -38,7 +38,7 @@ def query_ncbi(database: str, sequence: str) -> str:
     """
     with open(sequence, 'r') as f:
         seq = f.read()
-    result_handle = NCBIWWW.qblast("blastn", database, seq)
+    result_handle = NCBIWWW.qblast("blastn", database, seq, hitlist_size=65)
     return result_handle.read()
 
 
@@ -58,7 +58,10 @@ def store_query(database: str, sequence: str, file: str) -> None:
 
 def query_all(database: str, sequence: str, out: str) -> None:
     """
-
+    Function queries all the files that match given pattern.
+    :param database: database to be queried
+    :param sequence: query sequence
+    :param out: file where the results will be stored
     """
     files = glob.glob(sequence)
     for file in files:
@@ -67,7 +70,12 @@ def query_all(database: str, sequence: str, out: str) -> None:
 
 def get_out_file(file: str, specify: str, database: str) -> str:
     """
-
+    A proper name of a file for storing results is created
+        - either specified by the user or in format original_name_database_results.
+    :param file: Name of a file with a sequence.
+    :param specify: User specified file name for storing results.
+    :param database: database to be queried
+    :return: Name of a file for storing results.
     """
     if specify is not None:
         return specify
@@ -77,7 +85,7 @@ def get_out_file(file: str, specify: str, database: str) -> str:
 
 def list_ncbi() -> str:
     """
-???
+    :return: Returns list of NCBI databases possible to search.
     """
     return """List of NCBI databases possible to be searched:
     nt: All GenBank + EMBL + DDBJ + PDB sequences. Non-redundant, records with identical sequences collapsed into a single entry.
@@ -87,6 +95,9 @@ Projects, an 18S and a 26S RNA rRNA dataabses for fungi, plus an ITS database fo
 
 
 def list_bold() -> str:
+    """
+    :return: Returns list of BOLD databases possible to search.
+    """
     return """List of BOLD databases possible to be searched:
     COX1 - Every COI barcode record on BOLD with a minimum sequence length of 500bp.
     COX1_SPECIES - Every COI barcode record with a species level identification and a minimum sequence length of 500bp.
