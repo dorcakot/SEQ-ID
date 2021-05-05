@@ -21,7 +21,7 @@ $ python setup.py install
 ``` 
 ##### SEQ ID USAGE
 ```console
-$ seq-id
+$ seq_id
 positional arguments:
   {list,query,summary,compare,taxon}
     list                List databases.
@@ -40,7 +40,7 @@ Path to a file with sequence or wildcard path to multiple sequence files can be 
 
 *Obtaining results:*
 ```console
-$ seq-id query COX1 unknown_sequence
+$ seq_id query COX1 unknown_sequence
 Requesting BOLD...
 Results stored in unknown_sequence_COX1_result
 ```
@@ -50,7 +50,7 @@ Now, file unknown_sequence_COX1_result contains the matches found in BOLD COX1 d
 *Exploring results:*
 First option is to display a simple search summary by specifying the output file:
 ```console
-$ seq-id summary unknown_sequence_COX1_result
+$ seq_id summary unknown_sequence_COX1_result
 The query results for sequence: unknown_sequence
     Database queried: COX1
     Number of hits: 65
@@ -60,7 +60,7 @@ The query results for sequence: unknown_sequence
 
 Next, it is possible to list first n matches ordered by similariy. The default number of displayed matches is 10:
 ```console
-$ seq-id summary unknown_sequence_COX1_result --similarity --num 2
+$ seq_id summary unknown_sequence_COX1_result --similarity --num 2
 The top 2 matches in BOLD database for sequence unknown_sequence:
 1 Sequence with ID GBIR12293-19 belonging to Streptopelia decaocto showed similarity 0.9978.
 2 Sequence with ID GBIR10752-19 belonging to Streptopelia decaocto showed similarity 0.9978.
@@ -68,7 +68,7 @@ The top 2 matches in BOLD database for sequence unknown_sequence:
 
 Another option is to observe in which countries samples for top n sequences were collected. (considered are only samples with locality information):
 ```console
-$ seq-id summary unknown_sequence_COX1_result --country
+$ seq_id summary unknown_sequence_COX1_result --country
 The top 10 matches in BOLD database for sequence unknown_sequence:
 1 Sample for sequence with ID GBMIN134018-17 belonging to Streptopelia decaocto was collected in  Cyprus.
 2 Sample for sequence with ID GBIR5261-13 belonging to Streptopelia decaocto was collected in  Saudi Arabia.
@@ -84,7 +84,7 @@ The top 10 matches in BOLD database for sequence unknown_sequence:
 
 Lastly, an overview of assigned taxonomic identification:
 ```console
-$ seq-id summary unknown_sequence_COX1_result --identification
+$ seq_id summary unknown_sequence_COX1_result --identification
 Taxonomic identification results from BOLD database for sequence unknown_sequence:
 1 Streptopelia decaocto was matched  62 times with sequence similarity 0.9912 - 0.9978.
 2 Streptopelia roseogrisea was matched 3 times with sequence similarity 0.9956 - 0.9956.
@@ -96,7 +96,7 @@ Path to a file with sequence or wildcard path to multiple sequence files can be 
 
 *Obtaining results:*
 ```console
-$ seq-id query nt unknown_sequence
+$ seq_id query nt unknown_sequence
 Requesting NCBI...
 Results stored in unknown_sequence_nt_result
 ```
@@ -106,7 +106,7 @@ Now, file unknown_sequence_nt_result contains the matches found in GenBank, EMBL
 *Exploring results:*
 First option is to display a simple search summary by specifying the output file:
 ```console
-$ seq-id summary unknown_sequence_nt_result
+$ seq_id summary unknown_sequence_nt_result
 The query results for sequence: unknown_sequence
       Database queried: nt
       Number of hits: 65
@@ -120,7 +120,7 @@ The query results for sequence: unknown_sequence
 
 Next, it is possible to list first n matches ordered by score. The default number of displayed matches is 10:
 ```console
-$ seq-id summary unknown_sequence_nt_result --score --num 2
+$ seq_id summary unknown_sequence_nt_result --score --num 2
 Top 2 matches from NCBI search:
 _____HIT 1_____
  sequence: gi|1381394236|ref|NC_037513.1| Streptopelia decaocto mitochondrion, complete genome >gi|1376496320|gb|KY827036.1| Streptopelia decaocto mitochondrion, complete genome
@@ -136,7 +136,7 @@ _____HIT 2_____
 
 Lastly, an overview of assigned taxonomic identification:
 ```console
-$ seq-id summary unknown_sequence_nt_result --identification
+$ seq_id summary unknown_sequence_nt_result --identification
 Taxonomic identification results from NCBI databases for sequence unknown_sequence:
 1 Streptopelia decaocto was matched  58 times with score 407.0 - 458.0.
 2 Streptopelia roseogrisea was matched  7 times with score 434.0 - 455.0.
@@ -147,7 +147,7 @@ To compare searches from bothe sources, first run the searches and specify resul
 
 *Comparing results:*
 ```console
-$ seq-id compare unknown_sequence_COX1_result unknown_sequence_nt_result
+$ seq_id compare unknown_sequence_COX1_result unknown_sequence_nt_result
 The query results for sequence: unknown_sequence
 ----------------------------------------BOLD--------------------NCBI----------
 | Database queried:           |  COX1                |  nt                   |
@@ -161,7 +161,7 @@ The query results for sequence: unknown_sequence
 Both database searches suggest that the unknown_sequence is from Streptopelia decaocto.
 To find out about this or any other specimen, run with `taxon` command and provide an identificator - either BOLD ID or name.
 ```console
-$ seq-id taxon GBIR12293-19
+$ seq_id taxon GBIR12293-19
 BOLD record for GBIR12293-19:
 TAXONOMY:
  Phylum: Chordata
@@ -200,7 +200,7 @@ TACAAGAA
 ```
 
 ```console
-$ seq-id taxon Streptopelia decaocto
+$ seq_id taxon Streptopelia decaocto
 BOLD record for Streptopelia decaocto:
 TAXONOMY:
  Phylum: Chordata
@@ -232,7 +232,7 @@ Data from one selected or both databases can be included. This can be done using
 via options `--bold` and `--ncbi`.
 
 ```console
-$ seq-id report --bold unknown_sequence_COX1_result
+$ seq_id report --bold unknown_sequence_COX1_result
 BOLD query results for sequence seq: 
     Database queried: COX1
     Number of hits: 65
